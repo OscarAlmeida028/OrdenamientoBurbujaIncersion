@@ -7,19 +7,12 @@ public class Ordenamiento {
     int[] arregloBurbuja;
     int[] arregloInsercion;
 
+    public void generarArreglos(int tam) {
+        arreglo = new int[tam];
 
-    public void generarArreglos() {
-        Random rand = new Random();
-        for (int i = 0; i < arreglo.length; i++) {
-            arreglo[i] = (int) (Math.random() * 10000);
-        }
-    }
-
-    public void QuemarDatosNumDatos(int numDatos) {
-        arreglo = new int[numDatos];
-        Random rand = new Random();
-        for (int i = 0; i < numDatos; i++) {
-            arreglo[i] = rand.nextInt(10000);
+        Random random = new Random();
+        for (int i = 0; i < tam; i++) {
+            arreglo[i] = random.nextInt(10000);
         }
     }
 
@@ -52,11 +45,11 @@ public class Ordenamiento {
         }
     }
 
-    public int[] mostrarArrBurbuja() {
+    public int[] getArrBurbuja() {
         return arregloBurbuja;
     }
 
-    public int[] mostrarArrInsercion() {
+    public int[] getArrInsercion() {
         return arregloInsercion;
     }
 
@@ -77,8 +70,6 @@ public class Ordenamiento {
             linearSearch(data, -1);
             linearTiempoFin = System.nanoTime();
             linearTiempoResultado = linearTiempoFin - linearTiempoIncio;
-
-            //Arrays.sort(data);
 
             binaryTiempoInicio = System.nanoTime();
             binarySearch(data, -1);

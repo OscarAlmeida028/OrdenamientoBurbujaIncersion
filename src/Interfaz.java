@@ -19,15 +19,22 @@ public class Interfaz extends JFrame {
 
     public Interfaz() {
         Ordenamiento ordenamiento = new Ordenamiento();
+        textAOrdenamientoBurbuja.setEditable(false);
+        textAOrdenamientoIncersion.setEditable(false);
+        textAMostrarArreglos.setEditable(false);
         btnGenerar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int numDatos = Integer.parseInt(textTamanio.getText());
-                ordenamiento.QuemarDatosNumDatos(numDatos);
-                textAMostrarArreglos.setText("");
-                int[] numeros = ordenamiento.getArreglo();
-                for (int i = 0; i < numeros.length; i++) {
-                    textAMostrarArreglos.append(numeros[i] + "\n");
+                try{
+                    int numDatos = Integer.parseInt(textTamanio.getText());
+                    ordenamiento.generarArreglos(numDatos);
+                    textAMostrarArreglos.setText("");
+                    int[] numeros = ordenamiento.getArreglo();
+                    for (int i = 0; i < numeros.length; i++) {
+                        textAMostrarArreglos.append(numeros[i] + "\n");
+                    }
+                }catch (Exception x){
+                    JOptionPane.showMessageDialog(null, "Por favor ingrese un número y que sea válido");
                 }
             }
         });
@@ -36,7 +43,7 @@ public class Interfaz extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 ordenamiento.Insercion();
                 textAOrdenamientoIncersion.setText("");
-                int[] numeros = ordenamiento.mostrarArrInsercion();
+                int[] numeros = ordenamiento.getArrInsercion();
                 for (int i = 0; i < numeros.length; i++) {
                     textAOrdenamientoIncersion.append(numeros[i] + "\n");
                 }
@@ -48,7 +55,7 @@ public class Interfaz extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 ordenamiento.Burbuja();
                 textAOrdenamientoBurbuja.setText("");
-                int[] numeros = ordenamiento.mostrarArrBurbuja();
+                int[] numeros = ordenamiento.getArrBurbuja();
                 for (int i = 0; i < numeros.length; i++) {
                     textAOrdenamientoBurbuja.append(numeros[i] + "\n");
                 }
@@ -59,5 +66,4 @@ public class Interfaz extends JFrame {
     public JPanel getPrincipal() {
         return Principal;
     }
-
 }
